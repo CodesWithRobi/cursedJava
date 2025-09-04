@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Test {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.next();
+    Float myFloat = Float.parseFloat(input);
+    int intBits = Float.floatToIntBits(myFloat);
+    System.out.println(Integer.toBinaryString(intBits));
+
+    int eBits = 0;
+    System.out.print(myFloat < 0 ? '1' : '0');
+    String[] floatVal = input.split("\\.");
+    float decimalVal = Float.parseFloat("0."+floatVal[1]);
+    System.out.println(decimalVal);
+    for(int i = 0; i < 8; i++) {
+      decimalVal *= 2; 
+      if(decimalVal >= 1) {
+        eBits = (eBits<<1)|1;
+        decimalVal--;
+      }
+      else {
+        eBits<<=1;
+      }
+    }
+    System.out.println(Integer.toBinaryString(eBits));
+    scanner.close();
+  }
+}
