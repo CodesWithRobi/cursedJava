@@ -1,5 +1,4 @@
 interface A {
-  int a = 1;
   default void print() {
     System.out.println("I am A");
   }
@@ -8,9 +7,8 @@ interface A {
 }
 
 interface B {
-  default int print() {
+  default void print() { //Make this void -> int, its so funny!!
     System.out.println("I am B");
-    return 1;
   }
 
   void kewl();
@@ -19,7 +17,7 @@ interface B {
 class Cls implements A, B {
 
   @Override
-  public int print() {
+  public void print() { // Can't do it without Override.. lol
     System.out.println("I AM HUNGRY");
   }
 
@@ -32,9 +30,8 @@ class Cls implements A, B {
   }
 }
 
-public class Exp {
+public class DefaultMethod {
   public static void main(String[] args) {
     Cls obj = new Cls();
-    
   }
 }
