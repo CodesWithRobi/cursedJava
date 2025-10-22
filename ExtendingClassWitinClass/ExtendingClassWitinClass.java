@@ -9,7 +9,7 @@ class A {
 
 public class ExtendingClassWitinClass {
   public static void main(String[] args) {
-    //A.B a  = new A().new B().new B().new B();
-    System.out.println("Depth = " + A.B.B.B.B.B.B.B.B.B.B.B.B.what);
+    A.B a  = new A().new B().new B().new B();
+    System.out.println("Depth = " + A.B.B.B.B.what);
   }
 }
