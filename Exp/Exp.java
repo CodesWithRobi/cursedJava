@@ -1,8 +1,4 @@
-
-public class Exp {
-  public static void main(String[] args) {
-    String greeting = "Hello world!";
-    new String("Hello World");
-    CharSequence
-  }
+public static void main(String[] args) {
+  var a = "string";
+  IO.println(a.repeat(5));
 }
