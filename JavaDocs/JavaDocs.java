@@ -4,7 +4,7 @@ import java.net.http.HttpClient;      // The "browser"
 import java.net.http.HttpRequest;     // The request for the URL
 import java.net.http.HttpResponse;    // The response from the server
 
-public class Exp {
+public class JavaDocs {
 
     public static void main(String[] args) {
         
