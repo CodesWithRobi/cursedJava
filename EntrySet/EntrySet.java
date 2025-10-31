@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 void main() {
@@ -10,6 +9,7 @@ void main() {
   var eSet = hash.entrySet();
   IO.println(eSet);
 
+  // Not a copy but reference!!
   hash.remove(2);
   IO.println(eSet);
 }
