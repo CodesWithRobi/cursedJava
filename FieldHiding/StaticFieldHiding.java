@@ -14,12 +14,11 @@ class B extends A {
 public class StaticFieldHiding {
   public static void main(String[] args) {
     System.out.println("Variables:"); // Not Polymorphic
-    System.out.println(new B().ch);
-    A objA = new B();
-    System.out.println(objA.ch);
+    System.out.println(A.ch);
+    System.out.println(B.ch);
 
     System.out.println("Methods:"); // Polymorphic
-    new B().print();
-    objA.print();
+    A.print();
+    B.print();
   }
 }
