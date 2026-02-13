@@ -5,3 +5,12 @@ One thing they almost all share is Compressed Oops (Ordinary Object Pointers). S
 Most developers use the term "Modulo" for the % operator, but in Java, it is strictly a Remainder operator.
 * In Mathematics (True Modulo): The result of a(modb) should always have the same sign as the divisor (b). If you are modding by 10, the result should always be 0 to 9.
 * In Java (Remainder): The result of a % b always has the same sign as the dividend (a).
+
+> Why Constructors are not memebers of a Class?
+Because if they were memebers then they would have been inherited on extending!
+
+
+Class Methods are polymorphic but Class Attributes are not polymorphic!!
+
+
+new String() create object in regular heap and not in constant pool, you can .intern() this!
