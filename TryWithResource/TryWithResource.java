@@ -11,5 +11,6 @@ void main() {
     out.println("Bro all these classes implemented AutoClosables and this try-with-resource call em automatically");
   } catch (IOException e) {
     e.printStackTrace();
+    e.getSuppressed(); // To retrieve the suppressed expression as the primary one is shown
   }
 }
