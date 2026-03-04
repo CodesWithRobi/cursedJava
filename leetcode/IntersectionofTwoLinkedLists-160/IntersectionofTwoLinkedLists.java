@@ -1,79 +1,125 @@
-// LeetCode ListNode definition
-class ListNode {
-  int val;
-  ListNode next;
-  ListNode(int x) {
-    val = x;
-    next = null;
-  }
-}
+import java.util.*;
+import java.io.FileWriter;
+import java.io.StreamTokenizer;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.Reader;
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
+import java.util.BitSet;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
+import java.util.concurrent.locks.*;
+import java.util.function.*;
+import java.util.stream.*;
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonArray;
+import com.eclipsesource.json.JsonValue;
+import java.text.DecimalFormat;
+
+// user submitted code insert below
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 
 class Solution {
-  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    int a = 0, b = 0;
-    ListNode tempA = headA, tempB = headB;
-    while((tempA = tempA.next) != null) a++;
-    while((tempB = tempB.next) != null) b++;
-    tempA = headA;
-    tempB = headB;
-    for(;a > b;a--) tempA = tempA.next;
-    for(;a < b;b--) tempB = tempB.next;
-    while(tempA != null && tempA != tempB) {
-      tempA = tempA.next;
-      tempB = tempB.next;
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        try {
+            System.out.print(Files.readString(Path.of("__Driver__.java")));
+        } catch(Exception e) {}
+        return null;
     }
-    return tempA;
-  }
 }
 
-public class IntersectionofTwoLinkedLists {
-  public static void main(String[] args) {
-    // --- TEST CASE SETUP ---
-    // listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], intersectVal = 8
-    int[] arrA = {4, 1};
-    int[] arrB = {5, 6, 1};
-    int[] common = {8, 4, 5};
+class __Driver__ {
+    // Load up serializer on driver class load. Required for debugger app.
+    private static String zeroString = __Serializer__.serialize(0);
 
-    // 1. Create the common/intersecting part
-    ListNode intersectNode = buildList(common);
-
-    // 2. Create headA and attach to intersectNode
-    ListNode headA = buildList(arrA);
-    attach(headA, intersectNode);
-
-    // 3. Create headB and attach to intersectNode
-    ListNode headB = buildList(arrB);
-    attach(headB, intersectNode);
-
-    // --- DEBUGGER SECTION ---
-    // Set your breakpoint on the line below in NVIM (e.g., :DapContinue)
-    Solution sol = new Solution();
-    ListNode result = sol.getIntersectionNode(headA, headB);
-
-    if (result != null) {
-      System.out.println("Intersected at '" + result.val + "'");
-    } else {
-      System.out.println("No intersection.");
+    private static Boolean validateList(ListNode cur, ListNode original)
+    {
+        while (original!=null) {
+            if (cur==null) return false; // current is shorter than original
+            if (original.val != cur.val) return false; // value changed
+            original = original.next;
+            cur = cur.next;
+        }
+        if (cur!=null) return false;   // current is longer than original
+        else return true;
     }
-  }
+    
+    private static final String SEPARATOR = new StringBuilder()
+            .append((char) 27)      // ESCAPE
+            .append((char) 9)       // TAB
+            .append((char) 29)      // GROUP SEPARATOR
+            .toString();
+    public static void main(String[] args) throws IOException {
+        ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+        long ctime_start;
+        long ctime_total = 0;
 
-  // Helper to build a list from array
-  private static ListNode buildList(int[] arr) {
-    if (arr.length == 0) return null;
-    ListNode dummy = new ListNode(0);
-    ListNode curr = dummy;
-    for (int val : arr) {
-      curr.next = new ListNode(val);
-      curr = curr.next;
+        PrintWriter printWriter = new PrintWriter(new FileWriter("user.out"), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        ListNode dummy = new ListNode(0);
+        String line;
+        while ((line = in.readLine()) != null) {
+            int intersection = __Deserializer__.toInteger(line);
+            line = in.readLine();
+            ListNode listA = __Deserializer__.toListNode(line);
+            ListNode listA_backup = __Deserializer__.toListNode(line);
+            line = in.readLine();
+            ListNode listB = __Deserializer__.toListNode(line);
+            ListNode listB_backup = __Deserializer__.toListNode(line);
+            
+            line = in.readLine();
+            int lenA = __Deserializer__.toInteger(line);
+            line = in.readLine();
+            int lenB = __Deserializer__.toInteger(line);
+
+            if (intersection != 0)   // If there is intersection
+            {
+                dummy.next = listB;
+                ListNode a = listA;
+                ListNode b = dummy;
+                for (int i = 0; i < lenA; i++) a=a.next;
+                for (int i = 0; i < lenB; i++) b=b.next;
+                b.next = a;
+                listB = dummy.next;
+            }
+            
+            ctime_start = bean.getCurrentThreadCpuTime();
+            ListNode intersection_node = new Solution().getIntersectionNode(listA, listB);
+            ctime_total += bean.getCurrentThreadCpuTime() - ctime_start;
+
+            if (intersection_node!=null)
+                printWriter.printf("Intersected at '%d'",intersection_node.val);
+            else
+                printWriter.printf("No intersection");
+            //System.out.printf("\n");
+                    // Validate the lists:
+            ListNode pA=listA;
+            ListNode pA_backup=listA_backup;
+            ListNode pB=listB;
+            ListNode pB_backup=listB_backup;
+            if (__Driver__.validateList(pA, pA_backup) && 
+                __Driver__.validateList(pB, pB_backup))
+            {
+                printWriter.printf("\n");
+            }
+            else
+            {
+                printWriter.printf(", ERROR: linked structure was modified.\n");
+            }
+            System.out.print(SEPARATOR);
+        }
+        printWriter.close();
+
+        PrintWriter runtimeWriter = new PrintWriter(new FileWriter("display_runtime.txt"), true);
+        ctime_total /= 1000000;
+        runtimeWriter.println(ctime_total);
+        runtimeWriter.close();
     }
-    return dummy.next;
-  }
-
-  // Helper to attach the end of one list to another node
-  private static void attach(ListNode head, ListNode tail) {
-    if (head == null) return;
-    ListNode curr = head;
-    while (curr.next != null) curr = curr.next;
-    curr.next = tail;
-  }
 }
