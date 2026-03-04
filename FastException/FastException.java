@@ -14,6 +14,7 @@ void main() {
   } catch(Exception e) {
     System.out.println("Normal Exception:");
     e.printStackTrace();
+    e.getLocalizedMessage()
   }
   try {
     throw new FastException();

@@ -10,7 +10,7 @@ public class LambdaFunction {
   }
 
   public static void main(String[] args) {
-    Scream me = (str) -> System.out.println(str + " 👀");
+    Scream me = str -> System.out.println(str + " 👀");
     me.print("Bro this is cool!");
     execute(() -> System.out.println("Running!"));
   }

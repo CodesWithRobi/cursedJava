@@ -1,5 +1,3 @@
-package Exp;
-//
 // class Solution {
 //   public int trap(int[] height) {
 //     int l = 0, r = height.length-1;
@@ -101,9 +99,19 @@ package Exp;
 //
 //
 
-
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.concurrent.*;
 
 void main() {
-  System.out.println(Arrays.toString(arr));
+  try {
+    int[] n = {10};
+    n[10] = 1;
+    
+  } catch(IndexOutOfBoundsException e) {
+    IO.println(e.getMessage());
+    IO.println(e.getCause());
+    System.out.print(e);
+  } 
 }
 
