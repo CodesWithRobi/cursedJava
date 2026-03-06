@@ -1,16 +1,5 @@
 // Java collections are heavily interface driven!
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.TreeSet;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-
 void main() {
   List<Integer> li;
   li = new LinkedList<>();
