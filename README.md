@@ -14,3 +14,7 @@ Class Methods are polymorphic but Class Attributes are not polymorphic!!
 
 
 new String() create object in regular heap and not in constant pool, you can .intern() this!
+
+
+>Throw Early Catch Late
+* The class Exception and any subclasses that are not also subclasses of RuntimeException are **checked exceptions**

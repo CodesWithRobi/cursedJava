@@ -109,6 +109,7 @@ void main() {
     n[10] = 1;
     
   } catch(IndexOutOfBoundsException e) {
+    e.printStackTrace()
     IO.println(e.getMessage());
     IO.println(e.getCause());
     System.out.print(e);
