@@ -18,3 +18,13 @@ new String() create object in regular heap and not in constant pool, you can .in
 
 >Throw Early Catch Late
 * The class Exception and any subclasses that are not also subclasses of RuntimeException are **checked exceptions**
+
+
+>Three strict rules when using `throws`:
+
+1.  **Unchecked Exceptions are Invisible:** You *can* declare `throws NullPointerException`, but you don't have to. The compiler only cares about **Checked Exceptions** (like `IOException`).
+2.  **The "Subclass" Constraint:** If you override a method, the subclass **cannot** throw a broader exception than the parent. If the parent throws `IOException`, the child can't throw `Exception`. (You can't be more dangerous than your father!)
+3.  **The Multi-Throw:** You can declare multiple exceptions separated by commas: 
+    `public void load() throws IOException, SQLException { ... }`
+
+---
