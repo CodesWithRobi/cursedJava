@@ -27,4 +27,18 @@ new String() create object in regular heap and not in constant pool, you can .in
 3.  **The Multi-Throw:** You can declare multiple exceptions separated by commas: 
     `public void load() throws IOException, SQLException { ... }`
 
+>Rules for Exception Propagation in Java
+* Child catch block should have specific exception for better code clarity. Parent catch block can have more generic exception handled so that if child catch block is not able to handle the exception then parent catch block can handle it.
+* There in no restriction on exception hiearchy to be used in child vs parent catch block.
+* If a exception is handled correctly in child catch block, then in parent, another exception can be raised and handled.
+
 ---
+
+>Characteristics of a Daemon Thread in Java
+
+* A Daemon thread is a low priority thread.
+* A Daemon thread is a service provider thread and should not be used as user thread.
+* JVM automatically closes the daemon thread(s) if no active thread is present and revives it if user threads are active again.
+* A daemon thread cannot prevent JVM to exit if all user threads are done.
+
+
