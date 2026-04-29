@@ -35,10 +35,16 @@ new String() create object in regular heap and not in constant pool, you can .in
 ---
 
 >Characteristics of a Daemon Thread in Java
-
 * A Daemon thread is a low priority thread.
 * A Daemon thread is a service provider thread and should not be used as user thread.
 * JVM automatically closes the daemon thread(s) if no active thread is present and revives it if user threads are active again.
 * A daemon thread cannot prevent JVM to exit if all user threads are done.
 
+---
 
+>Methods used for Inter-thread Communication
+* All three methods can be called only from within a synchronized context
+1.public void wait()
+2.public void notify()
+3.public void notifyAll()
+* All three methods can be called only from within a `synchronized` context.
