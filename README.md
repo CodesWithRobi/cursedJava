@@ -48,3 +48,10 @@ new String() create object in regular heap and not in constant pool, you can .in
 2.public void notify()
 3.public void notifyAll()
 * All three methods can be called only from within a `synchronized` context.
+
+* `Thread.interrupted()` calls `currentThread().getAndClearInterrupt()`
+* `Thread.currentThread().isInterrupted()`(non-static Thread method) returns `interrupted`
+
+---
+> [!TIP] #1 DEV RULES:
+* Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
