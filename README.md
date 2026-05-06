@@ -52,6 +52,22 @@ new String() create object in regular heap and not in constant pool, you can .in
 * `Thread.interrupted()` calls `currentThread().getAndClearInterrupt()`
 * `Thread.currentThread().isInterrupted()`(non-static Thread method) returns `interrupted`
 
+
+| Method | Behavior if Locked | Blocks Thread? | Return Type | Best Use Case |
+| :--- | :--- | :--- | :--- | :--- |
+| **`lock()`** | Waits forever. | **Yes** | `void` | When the task *must* be completed, no matter how long it takes. |
+| **`tryLock()`** | Gives up instantly. | **No** | `boolean` | Polling, or when you have alternative background work to do. |
+| **`tryLock(time)`** | Waits for a specific duration. | **Yes (Temporarily)** | `boolean` | Preventing infinite deadlocks and keeping the system responsive. |
+
+
+---
+* FileInputStream & FileOutputStream used to perform input and output of 8-bit bytes.
+* FileReader & FileWriter used to perform input and output for 16-bit unicode(2 bytes).
 ---
 > [!TIP] #1 DEV RULES:
 * Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
+* The elite way to write a file. It creates a BufferedWriter natively and safely defaults to UTF-8.
+```java
+try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
+    writer.write("I will be #1 Java Dev.");
+} ```
