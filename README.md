@@ -64,6 +64,15 @@ new String() create object in regular heap and not in constant pool, you can .in
 * FileInputStream & FileOutputStream used to perform input and output of 8-bit bytes.
 * FileReader & FileWriter used to perform input and output for 16-bit unicode(2 bytes).
 ---
+>Lambda Expressions
+* A lambda expression provides an implementation of the functional interface method
+* Optional type declaration − No need to declare the type of a parameter. The compiler can inference the same from the value of the parameter.
+* Optional parenthesis around parameter − No need to declare a single parameter in parenthesis. For multiple parameters, parentheses are required.
+* Optional curly braces − No need to use curly braces in expression body if the body contains a single statement.
+Optional return keyword − The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.
+* Lambda expression throws a compilation error, if a variable is assigned a value the second time(Not effectively final). But why?
+* Java does not give the Lambda the real variable, it secretly creates a hidden, identical copy of the variable's value and puts it inside the Lambda object on the Heap. This is called `Variable Capture`.
+---
 > [!TIP] #1 DEV RULES:
 * Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
 * The elite way to write a file. It creates a BufferedWriter natively and safely defaults to UTF-8.
@@ -71,3 +80,4 @@ new String() create object in regular heap and not in constant pool, you can .in
 try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
     writer.write("I will be #1 Java Dev.");
 } ```
+* [MoreFunWithGenerics](https://docs.oracle.com/javase/tutorial/extra/generics/morefun.html)
