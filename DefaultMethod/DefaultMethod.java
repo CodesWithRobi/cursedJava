@@ -3,6 +3,10 @@ interface A {
     System.out.println("I am A");
   }
 
+  static void tisStaticDefMethod() {
+    IO.print("JAVA 25 babyyy!!");
+  }
+
   void call();
 }
 
@@ -16,9 +20,14 @@ interface B {
 
 class Cls implements A, B {
 
-  @Override
-  public void print() { // Can't do it without Override.. lol
-    System.out.println("I AM HUNGRY");
+  // @Override
+  // public void print() { // Either override
+  //   System.out.println("I AM HUNGRY");
+  // }
+
+  public void print() {
+    A.super.print(); //This is so cursed why its not like super<A>.print() or smthng
+    //This is like referencing outerclass from the inner class Outer.this.method()
   }
 
   public void call() {
@@ -33,5 +42,6 @@ class Cls implements A, B {
 public class DefaultMethod {
   public static void main(String[] args) {
     Cls obj = new Cls();
+    A.tisStaticDefMethoa();
   }
 }

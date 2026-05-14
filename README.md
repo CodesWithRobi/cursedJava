@@ -81,3 +81,5 @@ try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
     writer.write("I will be #1 Java Dev.");
 } ```
 * [MoreFunWithGenerics](https://docs.oracle.com/javase/tutorial/extra/generics/morefun.html)
+* Point Constructors using New operator in Method Referencing (TreeSet::new)
+* Check out the Unresolvable Logical Problem that might in future make u debug for hours.. check [DefaultMethod.java](./DefaultMethod/DefaultMethod.java)
