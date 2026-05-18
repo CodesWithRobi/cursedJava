@@ -63,6 +63,15 @@ new String() create object in regular heap and not in constant pool, you can .in
 ---
 * FileInputStream & FileOutputStream used to perform input and output of 8-bit bytes.
 * FileReader & FileWriter used to perform input and output for 16-bit unicode(2 bytes).
+
+
+| I/O Tool | Thread Safety | Speed | Best Use Case |
+| --- | --- | --- | --- |
+| **`BufferedWriter`** | **Unsafe** (Requires external locks) | Fast | Simple text files, single-threaded scripts. |
+| **`BlockingQueue` + `BufferedWriter`** | **Safe** (By architectural design) | Very Fast | High-concurrency worker threads logging text data. |
+| **`FileChannel`** | **Safe** (OS manages the lock) | Extremely Fast | Binary data, heavy system-level data writing. |
+| **`MappedByteBuffer`** | **Safe** (If managed carefully) | **Instantaneous** | Gigabyte-sized files,custom databases,Kafka-style streaming|
+
 ---
 >Lambda Expressions
 * A lambda expression provides an implementation of the functional interface method
@@ -72,6 +81,16 @@ new String() create object in regular heap and not in constant pool, you can .in
 Optional return keyword − The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.
 * Lambda expression throws a compilation error, if a variable is assigned a value the second time(Not effectively final). But why?
 * Java does not give the Lambda the real variable, it secretly creates a hidden, identical copy of the variable's value and puts it inside the Lambda object on the Heap. This is called `Variable Capture`.
+---
+>Hidden Classes
+* Frameworks should be able to define classes as non-discoverable implementation details of the framework, These classes can neither be linked to other classes nor discoverable using reflection.
+* Extend Access Control Nest with non-discoverable classes.
+* Aggressive unloading of hidden classes will help frameworks to define as many hidden classes as required without degrading the performance.
+* Deprecate the non-standard API, `misc.Unsafe::defineAnonymousClass`, to be removed in future releases.
+---
+>Pattern Matching
+* Predicate − It is a Boolean function with one argument, which checks if the target object is an instance of the specified type.
+* Pattern Variable − Also known as a binding variable, if the predicate is true, the pattern variable is automatically cast to the specified type.
 ---
 > [!TIP] #1 DEV RULES:
 * Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
