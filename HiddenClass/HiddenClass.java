@@ -8,7 +8,7 @@ void main() throws Exception{
   Object result = method.invoke(hiddenClassObj, Integer.parseInt(IO.readln("Square of the number: ")));
   IO.println(result);
   IO.println(hiddenClass.isHidden());
-
+  IO.println(hiddenClass.getCanonicalName());
 }
 
 public static byte[] getByteArray() throws IOException {
