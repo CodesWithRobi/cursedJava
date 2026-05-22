@@ -1,3 +1,16 @@
+> [!TIP] #1 DEV RULES:
+* Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
+* The elite way to write a file. It creates a BufferedWriter natively and safely defaults to UTF-8.
+```java
+try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
+    writer.write("I will be #1 Java Dev.");
+} ```
+* [MoreFunWithGenerics](https://docs.oracle.com/javase/tutorial/extra/generics/morefun.html)
+* Point Constructors using New operator in Method Referencing (TreeSet::new)
+* Check out the Unresolvable Logical Problem that might in future make u debug for hours.. check [DefaultMethod.java](./DefaultMethod/DefaultMethod.java)
+* default (No modifier): Access is limited strictly to classes within the same package. It is often referred to as package-private
+---
+
 The JVM doesn't have a "byte stack." It uses a 32-bit stack. When you load a byte from an array, the JVM instruction baload automatically sign-extends it to a 32-bit int as it pushes it onto the stack.
 
 One thing they almost all share is Compressed Oops (Ordinary Object Pointers). Since you have an RHCSA, you know 64-bit systems use 8-byte pointers. This wastes space. Most JVMs, by default, compress these into 4 bytes if your heap is under 32GB. The moment you go to a 31.9GB heap to a 32.1GB heap, your memory usage might actually jump by 40% because the JVM has to switch back to 8-byte pointers!
@@ -92,13 +105,33 @@ Optional return keyword − The compiler automatically returns the value if the 
 * Predicate − It is a Boolean function with one argument, which checks if the target object is an instance of the specified type.
 * Pattern Variable − Also known as a binding variable, if the predicate is true, the pattern variable is automatically cast to the specified type.
 ---
-> [!TIP] #1 DEV RULES:
-* Almost always use `notifyAll()`. Waking up a few extra threads is slightly slower, but it prevents catastrophic, impossible-to-debug deadlocks where the one thread you needed stays asleep forever
-* The elite way to write a file. It creates a BufferedWriter natively and safely defaults to UTF-8.
-```java
-try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
-    writer.write("I will be #1 Java Dev.");
-} ```
-* [MoreFunWithGenerics](https://docs.oracle.com/javase/tutorial/extra/generics/morefun.html)
-* Point Constructors using New operator in Method Referencing (TreeSet::new)
-* Check out the Unresolvable Logical Problem that might in future make u debug for hours.. check [DefaultMethod.java](./DefaultMethod/DefaultMethod.java)
+>printf
+[Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html)
+
+`%[argument_index$][flags][width][.precision]conversion`
+
+
+| Character | Data Type | Output Example |
+| --- | --- | --- |
+| **`%s`** | String / Any Object | Prints `String.valueOf(obj)`. Handles `null` safely. |
+| **`%S`** | String (Uppercase) | Converts the entire string string to UPPERCASE natively. |
+| **`%d`** | Integer (byte, short, int, long) | Standard decimal integer format. |
+| **`%f`** | Floating-point (float, double) | Decimal fraction format. Defaults to `6` decimal places. |
+| **`%c`** | Character (char) | Prints a single Unicode character. |
+| **`%b`** | Boolean | Prints `true` or `false`. **Trap:** Any non-null object prints as `true`! |
+| **`%h`** | Hashcode | Prints the object's hashcode in hexadecimal format. |
+| **`%x`** / **`%X`** | Hexadecimal Integer | Prints integer value in base-16 notation (lowercased/uppercased). |
+| **`%e`** / **`%E`** | Scientific Notation | Prints floating point numbers in computer scientific notation ($1.23e+04$). |
+| **`%n`** | Platform-independent Newline | **Always use this instead of `\n**` to ensure cross-platform compatibility. |
+| **`%%`** | Literal Percent Sign | Escapes the percent sign so you can print a literal "%". |
+
+
+| Flag | Meaning | Behavior & Example |
+| --- | --- | --- |
+| **`-`** | Left Justified | Pads with spaces on the right side of the value instead of the left. |
+| **`+`** | Explicit Sign | Forces the output to explicitly display `+` for positive numbers and `-` for negatives. |
+| **`0`** | Zero-Padding | Pads the minimum width constraint with leading zeros instead of blank spaces. |
+| **`,`** | Grouping Separator | Automatically inserts locale-specific comma separators (e.g., `1,000,000`). |
+| **` `** (space) | Positive Cushion | Leaves a blank space in front of positive numbers to align perfectly with negative signs. |
+| **`#`** | Alternate Form | Forces radix prefixes onto octal (`0`) and hexadecimal (`0x` / `0X`) outputs. |
+ ---
