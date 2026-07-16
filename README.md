@@ -6,6 +6,15 @@ try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
     writer.write("I will be #1 Java Dev.");
 } 
 ```
+* If you extend the Thread Class, that means that subclass cannot extend any other Class, but if you implement Runnable interface then you can do this. 
+* Rule zero of concurrent programming: never make any assumptions.
+* The use of interrupt() should be reserved for situations where you want to interrupt a thread to signal it to die gracefully. 
+
+> [!TIP] “Thread groups are best viewed as an unsuccessful experiment, and you may simply ignore their existence.”
+>                                                                                         - Joshua Bloch
+>                                                                                           Software Architect
+>                                                                                           Oracle (Sun Microsystems)
+
 
 * [MoreFunWithGenerics](https://docs.oracle.com/javase/tutorial/extra/generics/morefun.html)
 * Point Constructors using New operator in Method Referencing (TreeSet::new)
@@ -43,6 +52,19 @@ try (BufferedWriter writer = Files.newBufferedWriter(Path.of("file.txt"))) {
 * **`TreeSet`**: Maintains elements in **Sorted Order** (e.g., alphabetical or numerical). $O(\log N)$ lookups. Backed by a Red-Black Tree.
 
 ### D. The `Map` Family (Technically separate from Collections)
+
+> `merge()` is so BASED than `put()` 
+```java
+// Check if "Apple" is already in map1
+if (map1.containsKey("Apple")) {
+    // If it exists, get the old value and add the new value
+    int oldValue = map1.get("Apple");
+    map1.put("Apple", oldValue + 20); 
+} else {
+    // If it does not exist, just insert it normally
+    map1.put("Apple", 20);
+}
+```
 
 * **`HashMap`**: Your default choice. $O(1)$ key lookups. Unordered keys.
 * **`LinkedHashMap`**: Remembers the exact order you `put()` the keys in. Great for building LRU (Least Recently Used) caches.
@@ -159,6 +181,9 @@ new String() create object in regular heap and not in constant pool, you can .in
 | **`tryLock()`** | Gives up instantly. | **No** | `boolean` | Polling, or when you have alternative background work to do. |
 | **`tryLock(time)`** | Waits for a specific duration. | **Yes (Temporarily)** | `boolean` | Preventing infinite deadlocks and keeping the system responsive. |
 
+
+* sleep() does not release the lock when it is called but method wait() does release the lock.
+* The only place you can call wait( ), notify( ) or notifyAll( ) is within a synchronized method.
 
 ---
 * FileInputStream & FileOutputStream used to perform input and output of 8-bit bytes.
