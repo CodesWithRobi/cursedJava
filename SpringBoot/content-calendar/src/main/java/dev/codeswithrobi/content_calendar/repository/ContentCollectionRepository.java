@@ -46,6 +46,7 @@ public class ContentCollectionRepository {
         "");
 
     contentList.add(content);
+    contentList.add(content);
 
   }
 
